@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>วงล้อรับของรางวัล JokeMoo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-gift"></i> วงล้อรับของรางวัล</h1>
+            <p class="subtitle">กรุณากรอกโค้ดจากผู้ดูแลระบบเพื่อหมุนวงล้อรับรางวัลสุดพิเศษ!</p>
+            <p class="subtitle" style="color: #ff0000; font-size: 1rem; margin-top: 10px;">
+            </p>
+        </header>
+        
+        <div class="content">
+            <div class="wheel-container">
+                <canvas id="wheel" width="500" height="500"></canvas>
+                <div class="wheel-center">
+                    <i class="fas fa-gift"></i>
+                </div>
+                                <!-- Pointer will be created dynamically by JavaScript -->
+            </div>
+            
+            <div class="controls">
+                <div class="code-section">
+                    <div class="code-title">
+                        <i class="fas fa-key"></i> กรอกโค้ดที่ได้รับจาก ADMIN
+                    </div>
+                    <div class="code-input-container">
+                        <input type="text" id="codeInput" placeholder="ป้อนโค้ดที่ได้รับ" maxlength="50">
+                        <button class="submit-code-btn" id="submitCodeBtn">ตรวจสอบโค้ด</button>
+                    </div>
+                    <div id="codeStatus" class="code-status">
+                        <i class="fas fa-info-circle"></i> โปรดกรอกโค้ดจากผู้ดูแลระบบ
+                    </div>
+                </div>
+                
+                <div class="spin-count">
+                    <div>คุณมีโอกาสหมุน: <span id="spinCounter">0</span> ครั้ง</div>
+                    <div>สถานะ: <span id="accessStatus">รอกรอกโค้ด</span></div>
+                </div>
+                
+                <button id="spinButton" disabled>หมุนวงล้อ!</button>
+                
+                <div class="result-container">
+                    <div class="result-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="result-title">รางวัลที่คุณได้รับ</div>
+                    <div id="result">กรุณากรอกโค้ดเพื่อเริ่มเล่น</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="prizes-list">
+            <div class="prizes-title"><i class="fas fa-history"></i> ประวัติ</div>
+            <div class="spin-history-container" id="spinHistoryContainer">
+                <div class="history-section">
+                    <div class="history-title"><i class="fas fa-dice"></i> ผลการสุ่มล่าสุด</div>
+                    <div class="history-items" id="spinHistoryList">
+                        <div class="no-history">ยังไม่มีการสุ่ม</div>
+                    </div>
+                </div>
+                <div class="history-section">
+                    <div class="history-title"><i class="fas fa-key"></i> โค้ดที่ใช้งาน</div>
+                    <div class="history-items" id="usedCodesList">
+                        <div class="no-history">ยังไม่มีการใช้โค้ด</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="prizes-list">
+            <div class="prizes-title"><i class="fas fa-gift"></i> รางวัลในวงล้อ</div>
+            <div class="prize-items" id="prizeItems">
+                <!-- รายการรางวัลจะถูกสร้างโดย JavaScript -->
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2023 วงล้อรับของรางวัล ของร้าน JOKEMOO</p>
+            <p>ระบบสุ่มวงล้อรับโค้ดจากแอดมินเพจได้เลยค่ะ</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/share/1DFQUZA9NV/?mibextid=wwXIfr" target="_blank" class="social-btn facebook" title="Follow Facebook">
+                    <i class="fab fa-facebook-f"></i> Jokemoo Movie
+                </a>
+                <a href="https://line.me/R/ti/p/@106zyrpm" target="_blank" class="social-btn line" title="Add Line">
+                    <i class="fab fa-line"></i> @106zyrpm
+                </a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Announcement Modal -->
+    <div id="announcementModal" class="announcement-modal">
+        <div class="announcement-modal-content">
+            <button class="announcement-close" id="announcementClose"><i class="fas fa-times"></i></button>
+            <div class="announcement-icon">
+                <i class="fas fa-bullhorn"></i>
+            </div>
+            <div class="announcement-title">📢 ประกาศข่าวสาร</div>
+            <div class="announcement-body" id="announcementBody">
+                ยินดีต้อนรับสู่วงล้อรับรางวัล JOKEMOO! 🎉
+                <br><br>
+                หมุนวงล้อเพื่อรับรางวัลพิเศษจากร้าน
+                <br>
+                กรอกโค้ดจากผู้ดูแลระบบเพื่อเริ่มเล่น
+            </div>
+            <div class="announcement-social">
+                <p style="margin-top: 20px; margin-bottom: 12px; font-size: 0.95rem;">ช่องสำหรับติดต่อเรา:</p>
+                <div style="display: flex; gap: 10px; justify-content: center;">
+                    <a href="https://www.facebook.com/share/1DFQUZA9NV/?mibextid=wwXIfr" target="_blank" class="announcement-social-btn facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://line.me/R/ti/p/@106zyrpm" target="_blank" class="announcement-social-btn line">
+                        <i class="fab fa-line"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Prize Modal -->
+    <div id="prizeModal" class="prize-modal">
+        <div class="prize-modal-content">
+            <div class="prize-modal-icon" id="prizeModalIcon">
+                <i class="fas fa-gift"></i>
+            </div>
+            <div class="prize-modal-title">🎉 ยินดีด้วย! 🎉</div>
+            <div class="prize-modal-title">!!สามารถแคปแจ้งแอดมินที่เพจหรือลายได้เลยค่ะ!!</div>
+            <div class="prize-modal-time" id="prizeModalTime" style="font-size: 0.9rem; color: #ffffff; margin: 10px 0;">
+                เวลา: --:--:--
+            </div>
+            <div class="prize-modal-prize" id="prizeModalText">
+                คุณได้รับรางวัล
+            </div>
+            <button class="prize-modal-close" id="prizeModalCloseBtn">กดเพื่อปิด</button>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
