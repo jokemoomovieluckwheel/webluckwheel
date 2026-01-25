@@ -13,8 +13,10 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    padding: 10px;
     background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
 }
 
 .container {
@@ -23,23 +25,23 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    padding: 10px;
 }
 
 header {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     width: 100%;
 }
 
 h1 {
-    font-size: 3rem;
+    font-size: clamp(1.5rem, 5vw, 3rem);
     margin-bottom: 10px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .subtitle {
-    font-size: 1.2rem;
+    font-size: clamp(0.9rem, 3vw, 1.2rem);
     opacity: 0.9;
     max-width: 600px;
     margin: 0 auto;
@@ -50,15 +52,15 @@ h1 {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 40px;
+    gap: clamp(15px, 3vw, 40px);
     width: 100%;
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 .wheel-container {
     position: relative;
-    width: 500px;
-    height: 500px;
+    width: min(500px, 90vw);
+    height: min(500px, 90vw);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -118,11 +120,12 @@ h1 {
     align-items: center;
     justify-content: center;
     flex: 1;
-    min-width: 300px;
+    min-width: 280px;
     max-width: 500px;
+    width: 90%;
     background: rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-    padding: 30px;
+    border-radius: 15px;
+    padding: clamp(15px, 3vw, 30px);
     backdrop-filter: blur(10px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
@@ -137,12 +140,14 @@ h1 {
 }
 
 .code-title {
-    font-size: 1.3rem;
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
     margin-bottom: 15px;
     color: #ffffff;
     display: flex;
     align-items: center;
     gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .code-input-container {
@@ -229,8 +234,8 @@ button {
     background: linear-gradient(to right, #ff9966, #ff5e62);
     color: white;
     border: none;
-    padding: 18px 40px;
-    font-size: 1.3rem;
+    padding: clamp(12px, 3vw, 18px) clamp(20px, 5vw, 40px);
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
     border-radius: 50px;
     cursor: pointer;
     margin: 10px 0;
@@ -297,7 +302,7 @@ button:disabled {
 }
 
 .spin-count {
-    font-size: 1.1rem;
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
     margin-bottom: 20px;
     color: #ffffff;
     text-align: center;
