@@ -7,7 +7,7 @@
 
 body {
     background: linear-gradient(135deg, rgba(255, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.7) 100%),
-                url('https://media.discordapp.net/attachments/1457328661744062592/1465046928885678253/1.png?ex=6977aec7&is=69765d47&hm=ec1f25cff7a9789ef5d57a979687d52206a881732b4d98bd24b121c7003c5d1d&=&format=webp&quality=lossless&width=1522&height=856') center/cover no-repeat fixed;
+    url('2.png') center/cover no-repeat fixed;
     color: white;
     min-height: 100vh;
     display: flex;
@@ -895,3 +895,4 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+
